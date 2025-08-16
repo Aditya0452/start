@@ -30,7 +30,19 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+             user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
             @apply bg-slate-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300;
+        }
+
+        /* Re-enable text selection for specific links */
+        .copy-enabled {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
         }
         .gradient-bg {
             background-image: linear-gradient(to right, #621eff, #ff198c);
@@ -546,7 +558,7 @@
 
     <!-- Sign In Page Template -->
     <template id="signin-page">
-        <div class="fade-in flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-4rem)]">
+        <div class="fade-in copy-enabled flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-4rem)]">
             <div class="max-w-md w-full space-y-6 bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg">
                 <div>
                     <div class="mx-auto h-12 w-12 rounded-full gradient-bg flex items-center justify-center">
@@ -610,7 +622,7 @@
 
     <!-- Sign Up Page Template -->
     <template id="signup-page">
-        <div class="fade-in flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-4rem)]">
+        <div class="fade-in copy-enabled flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-4rem)]">
             <div class="max-w-md w-full space-y-6 bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg">
                 <div>
                      <div class="mx-auto h-12 w-12 rounded-full gradient-bg flex items-center justify-center">
@@ -986,3 +998,4 @@
     </script>
 </body>
 </html>
+
