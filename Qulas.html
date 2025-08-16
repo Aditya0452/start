@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qulas - Empowering Innovation Through Technology</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Add dark mode support to Tailwind
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                   screens: {
+                    'tv': '2000px',
+                   }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-slate-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300;
+        }
+        .gradient-bg {
+            background-image: linear-gradient(to right, #621eff, #ff198c);
+        }
+        .gradient-text {
+            background-image: linear-gradient(to right, #753aff, #ff3e9f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-link {
+            @apply text-gray-600 dark:text-gray-300 hover:text-violet-500 dark:hover:text-violet-400 transition-colors duration-300 py-2;
+        }
+        .nav-link.active {
+            @apply text-violet-600 dark:text-violet-400 font-semibold border-b-2 border-violet-600 dark:border-violet-400;
+        }
+        .mobile-nav-link {
+             @apply flex items-center w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-gray-700;
+        }
+        .mobile-nav-link.active {
+            @apply bg-violet-600 text-white;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header id="main-header" class="bg-white/80 dark:bg-gray-900/90 backdrop-blur-lg shadow-sm dark:shadow-gray-900 fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">Q</span>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800 dark:text-white">Qulas</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6 dark:text-white">
+                    <a href="#home" class="nav-link hover:text-violet-500" data-route="home">Home</a>
+                    <a href="#services" class="nav-link hover:text-violet-500" data-route="services">Services</a>
+                    <a href="#about" class="nav-link hover:text-violet-500" data-route="about">About</a>
+                    <a href="#careers" class="nav-link hover:text-violet-500" data-route="careers">Careers</a>
+                    <a href="#contact" class="nav-link hover:text-violet-500" data-route="contact">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                     <button id="theme-toggle-desktop" type="button" class="hidden md:block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-full text-sm p-2.5">
+                        <svg id="theme-toggle-dark-icon-desktop" class="hidden w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon-desktop" class="hidden w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707z"></path></svg>
+                    </button>
+                     <div id="auth-container-desktop" class="hidden md:flex items-center space-x-3">
+                        <!-- Desktop auth buttons will be populated by JavaScript -->
+                     </div>
+                      <!-- Mobile Menu Button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-600 dark:text-gray-300 hover:text-violet-500 focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-gray-900/80 z-40 hidden md:hidden" aria-hidden="true"></div>
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-60 text-white bg-gray-900 shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden -translate-x-full">
+        <div class="flex flex-col h-full">
+             <div class="p-4 flex justify-between items-center border-b border-gray-700">
+                 <a href="#home" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">Q</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">Qulas</span>
+                </a>
+                 <button id="mobile-menu-close-button" class="text-gray-400 hover:text-white p-1 rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+             </div>
+            <div class="p-4 flex-grow">
+                <nav id="mobile-nav-links" class="flex flex-col space-y-2">
+                    <a href="#home" class="mobile-nav-link" data-route="home">Home</a>
+                    <a href="#services" class="mobile-nav-link" data-route="services">Services</a>
+                    <a href="#about" class="mobile-nav-link" data-route="about">About</a>
+                    <a href="#careers" class="mobile-nav-link" data-route="careers">Careers</a>
+                    <a href="#contact" class="mobile-nav-link" data-route="contact">Contact</a>
+                </nav>
+            </div>
+             <div id="auth-container-mobile" class=" flex flex-col p-4 border-t border-gray-700 space-y-2">
+                 <!-- Mobile auth buttons will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="app" class="pt-16">
+        <!-- Content will be injected here by the router -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="md:col-span-1 lg:col-span-1">
+                    <a href="#home" class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">Q</span>
+                        </div>
+                        <span class="text-2xl font-bold">Qulas</span>
+                    </a>
+                    <p class="text-gray-400">Empowering innovation through technology, providing solutions that drive growth.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-violet-400">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-violet-400">Services</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-violet-400">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-violet-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2"><span>📞</span><span>+91 7993923665</span></li>
+                        <li class="flex items-center space-x-2"><span>✉️</span><span>info@qulas.com</span></li>
+                        <li class="flex items-center space-x-2"><span>📍</span><span>Kukatpally, Hyderabad</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.011c0 4.432 2.865 8.18 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.011C22 6.477 17.523 2 12 2z" clip-rule="evenodd" /></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Qulas. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Templates -->
+
+    <!-- Home Page Template -->
+    <template id="home-page">
+        <div class="fade-in">
+            <!-- Hero Section -->
+            <section class="relative py-20 md:py-32 lg:py-40 tv:py-64">
+                 <div class="absolute inset-0 bg-gradient-to-br from-violet-950 to-pink-600 opacity-90"></div>
+                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl tv:text-8xl font-extrabold text-white leading-tight">
+                        Empowering Innovation<br>Through Technology
+                    </h1>
+                    <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl lg:text-2xl tv:text-3xl text-violet-100">
+                        From software development to digital marketing, Qulas provides comprehensive tech solutions that drive business growth and individual success.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#services" class="bg-white text-violet-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300 text-base lg:text-lg">
+                            Explore Services
+                        </a>
+                        <a href="#contact" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-violet-600 transition duration-300 text-base lg:text-lg">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Overview -->
+            <section class="py-16 md:py-24 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Comprehensive Services</h2>
+                        <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">We offer end-to-end solutions across multiple domains to help businesses and individuals thrive in the digital age.</p>
+                    </div>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Service Card -->
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                           <h3 class="text-xl font-bold text-gray-900 dark:text-white">Software Development</h3>
+                           <p class="mt-2 text-gray-600 dark:text-gray-300">Custom web and mobile apps.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                           <h3 class="text-xl font-bold text-gray-900 dark:text-white">Upskill Programs</h3>
+                           <p class="mt-2 text-gray-600 dark:text-gray-300">Training for modern tech demands.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                           <h3 class="text-xl font-bold text-gray-900 dark:text-white">Internships</h3>
+                           <p class="mt-2 text-gray-600 dark:text-gray-300">Real-world experience programs.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                           <h3 class="text-xl font-bold text-gray-900 dark:text-white">IT Recruitment</h3>
+                           <p class="mt-2 text-gray-600 dark:text-gray-300">Connecting talent with opportunities.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                           <h3 class="text-xl font-bold text-gray-900 dark:text-white">Digital Marketing</h3>
+                           <p class="mt-2 text-gray-600 dark:text-gray-300">Strategies that drive growth online.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                           <h3 class="text-xl font-bold text-gray-900 dark:text-white">E-books & Comics</h3>
+                           <p class="mt-2 text-gray-600 dark:text-gray-300">Engaging digital content creation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section class="py-16 md:py-24 bg-slate-50 dark:bg-gray-900">
+                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Why Choose Qulas?</h2>
+                         <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">We combine technical expertise with industry insights to deliver solutions that are not only robust but also perfectly aligned with your goals.</p>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/2 space-y-8">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full gradient-bg text-white flex items-center justify-center text-2xl font-bold">1</div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Innovation First Approach</h4>
+                                    <p class="mt-1 text-gray-600 dark:text-gray-300">We use the latest technologies to ensure your projects stay ahead of the curve.</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full gradient-bg text-white flex items-center justify-center text-2xl font-bold">2</div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-semibold text-gray-900 dark:text-white">End-to-End Solutions</h4>
+                                    <p class="mt-1 text-gray-600 dark:text-gray-300">From concept to deployment, we handle every aspect of your project with meticulous attention to detail.</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full gradient-bg text-white flex items-center justify-center text-2xl font-bold">3</div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Proven Track Record</h4>
+                                    <p class="mt-1 text-gray-600 dark:text-gray-300">Our diverse portfolio and satisfied clients speak to our commitment to excellence and results.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center items-center">
+                            <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl text-center">
+                                <div class="w-24 h-24 rounded-full gradient-bg flex items-center justify-center mx-auto">
+                                    <span class="text-white font-bold text-5xl">Q</span>
+                                </div>
+                                <h3 class="mt-6 text-2xl font-bold text-gray-900 dark:text-white">Qulas</h3>
+                                <p class="mt-2 text-gray-600 dark:text-gray-300">Your Technology Partner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </template>
+    
+    <!-- Services Page Template -->
+    <template id="services-page">
+        <div class="fade-in py-16 md:py-24 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-extrabold gradient-text">Our Comprehensive Services</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">From cutting-edge software development to strategic digital marketing, we provide a full spectrum of services to fuel your business success.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Service Card -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Software Development</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-300">Full-stack web & mobile development.</p>
+                        <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-400">
+                            <li>✓ Custom Web Applications</li>
+                            <li>✓ Mobile App Development (iOS & Android)</li>
+                            <li>✓ UI/UX Design & Prototyping</li>
+                        </ul>
+                    </div>
+                    <!-- Repeat for other services -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Upskill Programs</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-300">Corporate and individual training.</p>
+                         <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-400">
+                            <li>✓ Full-Stack Development Bootcamps</li>
+                            <li>✓ Data Science & Machine Learning</li>
+                            <li>✓ Cloud Computing (AWS, Azure)</li>
+                        </ul>
+                    </div>
+                     <div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">IT Recruitment</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-300">Connecting top talent with great companies.</p>
+                         <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-400">
+                            <li>✓ Permanent & Contract Staffing</li>
+                            <li>✓ Executive Search</li>
+                            <li>✓ Technical Screening</li>
+                        </ul>
+                    </div>
+                     <div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Digital Marketing</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-300">Boosting your online presence.</p>
+                         <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-400">
+                            <li>✓ SEO & SEM Strategy</li>
+                            <li>✓ Social Media Management</li>
+                            <li>✓ Content Marketing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- About Page Template -->
+    <template id="about-page">
+        <div class="fade-in">
+            <div class="py-16 md:py-24 bg-gradient-to-b from-violet-100 to-white dark:from-violet-900/50 dark:to-gray-900">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-5xl font-extrabold gradient-text">About Qulas</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">Empowering businesses and individuals through innovative technology solutions and comprehensive digital services.</p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                     <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Our Story</h2>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Founded in 2025, Qulas emerged from a simple yet powerful idea: to bridge the gap between technology's potential and real-world business needs. What started as a small team of passionate developers has grown into a full-service digital agency with a global client base. Our journey is one of continuous learning and adaptation, always staying at the forefront of the tech landscape to deliver cutting-edge solutions.</p>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center">
+                             <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl text-center w-full max-w-sm">
+                                <div class="w-24 h-24 rounded-full gradient-bg flex items-center justify-center mx-auto">
+                                    <span class="text-white font-bold text-5xl">Q</span>
+                                </div>
+                                <h3 class="mt-6 text-2xl font-bold text-gray-900 dark:text-white">Qulas</h3>
+                                <p class="mt-2 text-gray-600 dark:text-gray-400">Innovating since 2025</p>
+                                <div class="mt-6 flex justify-around text-center">
+                                    <div>
+                                        <p class="text-3xl font-bold gradient-text">500+</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Projects</p>
+                                    </div>
+                                     <div>
+                                        <p class="text-3xl font-bold gradient-text">200+</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Clients</p>
+                                    </div>
+                                     <div>
+                                        <p class="text-3xl font-bold gradient-text">50+</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Team Members</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="py-16 bg-gray-50 dark:bg-gray-900">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Meet Our Leadership Team</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Team Member Card -->
+                        <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/a78bfa/ffffff?text=AD" alt="Aditya">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Aditya</h4>
+                            <p class="text-gray-500 dark:text-gray-400">CEO & Founder</p>
+                        </div>
+                         <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/f472b6/ffffff?text=SR" alt="Srinivas">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Srinivas</h4>
+                            <p class="text-gray-500 dark:text-gray-400">CTO & Co Founder</p>
+                        </div>
+                         <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/60a5fa/ffffff?text=RE" alt="Renuka">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Renuka</h4>
+                            <p class="text-gray-500 dark:text-gray-400">Head of Operations</p>
+                        </div>
+                        <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/a78bfa/ffffff?text=HE" alt="Hema">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Hema</h4>
+                            <p class="text-gray-500 dark:text-gray-400">Co Head of Operations</p>
+                        </div>
+                         <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/fbbf24/ffffff?text=LA" alt="Lahari">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Lahari</h4>
+                            <p class="text-gray-500 dark:text-gray-400">Marketing Manager</p>
+                        </div>
+                        <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/60a5fa/ffffff?text=PR" alt="Praneeth">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Praneeth</h4>
+                            <p class="text-gray-500 dark:text-gray-400">Head of Developing Team</p>
+                        </div>
+                        <div class="text-center">
+                            <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/fbbf24/ffffff?text=SU" alt="Sujith">
+                            <h4 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">Sujith</h4>
+                            <p class="text-gray-500 dark:text-gray-400">Application Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Careers Page Template -->
+    <template id="careers-page">
+        <div class="fade-in">
+            <div class="py-16 md:py-24 bg-gradient-to-b from-violet-100 to-white dark:from-violet-900/50 dark:to-gray-900 text-center">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl md:text-5xl font-extrabold gradient-text">Join Our Team</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">Be part of a team that's passionate about innovation, growth, and making a difference. Explore our open positions and find your place at Qulas.</p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Open Positions</h2>
+                    <div class="space-y-6 max-w-4xl mx-auto">
+                        <!-- Job Opening Card -->
+                        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-md transition-shadow">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-violet-700 dark:text-violet-400">Senior Full-Stack Developer</h3>
+                                    <p class="text-gray-500 dark:text-gray-400">Remote | Full-time</p>
+                                </div>
+                                <a href="#" class="mt-4 sm:mt-0 bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600">Apply Now</a>
+                            </div>
+                            <p class="mt-4 text-gray-600 dark:text-gray-300">We are looking for an experienced Full-Stack Developer to join our team. You will be responsible for developing and maintaining web applications.</p>
+                        </div>
+                         <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-md transition-shadow">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-violet-700 dark:text-violet-400">Digital Marketing Specialist</h3>
+                                    <p class="text-gray-500 dark:text-gray-400">San Francisco, CA | Full-time</p>
+                                </div>
+                                <a href="#" class="mt-4 sm:mt-0 bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600">Apply Now</a>
+                            </div>
+                            <p class="mt-4 text-gray-600 dark:text-gray-300">Join our marketing team to create and implement strategies that increase online presence and drive lead generation.</p>
+                        </div>
+                         <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-md transition-shadow">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-violet-700 dark:text-violet-400">UI/UX Designer</h3>
+                                    <p class="text-gray-500 dark:text-gray-400">Remote | Part-time</p>
+                                </div>
+                                <a href="#" class="mt-4 sm:mt-0 bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600">Apply Now</a>
+                            </div>
+                            <p class="mt-4 text-gray-600 dark:text-gray-300">We're seeking a creative UI/UX designer to craft beautiful and intuitive user experiences for our web and mobile applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Contact Page Template -->
+    <template id="contact-page">
+        <div class="fade-in py-16 md:py-24 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-extrabold gradient-text">Get In Touch</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">Ready to start your project? We'd love to hear from you. Let's discuss how we can help bring your vision to life.</p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 bg-gray-50 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send Us a Message</h2>
+                        <form id="contact-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-violet-500 focus:border-violet-500 text-gray-900 dark:text-white">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-violet-500 focus:border-violet-500 text-gray-900 dark:text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+                                <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-violet-500 focus:border-violet-500 text-gray-900 dark:text-white">
+                            </div>
+                             <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project Details</label>
+                                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-violet-500 focus:border-violet-500 text-gray-900 dark:text-white"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full px-6 py-3 text-base font-medium text-white gradient-bg rounded-lg shadow-md hover:opacity-90 transition-opacity duration-300">
+                                    Send Message
+                                </button>
+                            </div>
+                            <p id="contact-form-feedback" class="text-center"></p>
+                        </form>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Quick Contact</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-300">Phone: +91 7993923665</p>
+                            <p class="mt-2 text-gray-600 dark:text-gray-300">Email: info@qulas.com</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Our Office</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-300">45A2 Tech Street<br>Kukatpally, Hyderabad</p>
+                        </div>
+                         <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Business Hours</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-300">Monday - Friday: 9am - 6pm</p>
+                            <p class="mt-2 text-gray-600 dark:text-gray-300">Saturday: Weekoff</p>
+                            <p class="mt-2 text-gray-600 dark:text-gray-300">Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Sign In Page Template -->
+    <template id="signin-page">
+        <div class="fade-in flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-4rem)]">
+            <div class="max-w-md w-full space-y-6 bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg">
+                <div>
+                    <div class="mx-auto h-12 w-12 rounded-full gradient-bg flex items-center justify-center">
+                        <span class="text-white font-bold text-2xl">Q</span>
+                    </div>
+                    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+                        Welcome Back
+                    </h2>
+                    <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+                        Sign in to your Qulas account to continue
+                    </p>
+                </div>
+
+                <div>
+                    <button id="google-signin-btn" class="w-full flex justify-center items-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <svg class="w-5 h-5 mr-2" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 381.5 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 25.4 170.1 66.2l-67.8 67.8C314.6 104.1 282.8 88 248 88c-77.4 0-140.3 62.9-140.3 140.3S170.6 396.6 248 396.6c45.9 0 81.3-18.8 108.2-45.1l67.8 67.8C418.7 470.3 340.2 504 248 504z"></path></svg>
+                        Continue with Google
+                    </button>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                            OR CONTINUE WITH EMAIL
+                        </span>
+                    </div>
+                </div>
+
+                <form id="signin-form" class="mt-8 space-y-6">
+                    <div class="rounded-md shadow-sm -space-y-px">
+                        <div>
+                            <label for="signin-email" class="sr-only">Email address</label>
+                            <input id="signin-email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                        </div>
+                        <div>
+                            <label for="signin-password" class="sr-only">Password</label>
+                            <input id="signin-password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" placeholder="Password">
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white gradient-bg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
+                            Sign In
+                        </button>
+                    </div>
+                    <p id="signin-error" class="text-center text-sm text-red-500"></p>
+                </form>
+                <div class="text-center text-sm">
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Don't have an account?
+                        <a href="#signup" class="font-medium text-violet-600 hover:text-violet-500 dark:text-violet-400 dark:hover:text-violet-300">
+                            Sign up here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Sign Up Page Template -->
+    <template id="signup-page">
+        <div class="fade-in flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-4rem)]">
+            <div class="max-w-md w-full space-y-6 bg-white dark:bg-gray-800 p-10 rounded-xl shadow-lg">
+                <div>
+                     <div class="mx-auto h-12 w-12 rounded-full gradient-bg flex items-center justify-center">
+                        <span class="text-white font-bold text-2xl">Q</span>
+                    </div>
+                    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+                        Join Qulas
+                    </h2>
+                    <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+                        Create your account to get started with our services
+                    </p>
+                </div>
+                
+                <div>
+                    <button id="google-signup-btn" class="w-full flex justify-center items-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                         <svg class="w-5 h-5 mr-2" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 381.5 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 25.4 170.1 66.2l-67.8 67.8C314.6 104.1 282.8 88 248 88c-77.4 0-140.3 62.9-140.3 140.3S170.6 396.6 248 396.6c45.9 0 81.3-18.8 108.2-45.1l67.8 67.8C418.7 470.3 340.2 504 248 504z"></path></svg>
+                        Continue with Google
+                    </button>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                            OR SIGN UP WITH EMAIL
+                        </span>
+                    </div>
+                </div>
+
+                <form id="signup-form" class="space-y-4">
+                    <div class="rounded-md shadow-sm space-y-4">
+                        <input name="firstName" type="text" required class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm" placeholder="First Name">
+                        <input name="lastName" type="text" required class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm" placeholder="Last Name">
+                        <input name="email" type="email" autocomplete="email" required class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm" placeholder="Email address">
+                        <input name="password" type="password" autocomplete="new-password" required class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm" placeholder="Password">
+                    </div>
+
+                    <div>
+                        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white gradient-bg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
+                            Create Account
+                        </button>
+                    </div>
+                     <p id="signup-error" class="text-center text-sm text-red-500"></p>
+                </form>
+                 <div class="text-center text-sm">
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Already have an account?
+                        <a href="#signin" class="font-medium text-violet-600 hover:text-violet-500 dark:text-violet-400 dark:hover:text-violet-300">
+                            Sign in here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Firebase -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            GoogleAuthProvider,
+            signInWithPopup
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        // IMPORTANT: Replace with your actual Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCsL8pFHNSw7x2H1Wmqt2AFhAQY9cBKTuY",
+            authDomain: "qulas-2025.firebaseapp.com",
+            projectId: "qulas-2025",
+            storageBucket: "qulas-2025.appspot.com",
+            messagingSenderId: "393381778054",
+            appId: "1:393381778054:web:e7ab664b16649d76ab3707",
+            measurementId: "G-3PLPKJT5RN"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // --- THEME TOGGLE ---
+        const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+        
+        const applyTheme = (theme) => {
+            const darkIconDesktop = document.getElementById('theme-toggle-dark-icon-desktop');
+            const lightIconDesktop = document.getElementById('theme-toggle-light-icon-desktop');
+            const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+            const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                if(lightIconDesktop) lightIconDesktop.classList.remove('hidden');
+                if(darkIconDesktop) darkIconDesktop.classList.add('hidden');
+                if(lightIconMobile) lightIconMobile.classList.remove('hidden');
+                if(darkIconMobile) darkIconMobile.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                if(darkIconDesktop) darkIconDesktop.classList.remove('hidden');
+                if(lightIconDesktop) lightIconDesktop.classList.add('hidden');
+                if(darkIconMobile) darkIconMobile.classList.remove('hidden');
+                if(lightIconMobile) lightIconMobile.classList.add('hidden');
+            }
+        };
+
+        const toggleTheme = () => {
+            const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        };
+        
+        // Load theme on initial load
+        const initialTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(initialTheme);
+
+        if(themeToggleDesktop) themeToggleDesktop.addEventListener('click', toggleTheme);
+
+
+        // --- ROUTER ---
+        const appContainer = document.getElementById('app');
+        const desktopNavLinks = document.querySelectorAll('#main-header .nav-link');
+        const mobileNavLinks = document.querySelectorAll('#mobile-nav-links .mobile-nav-link');
+
+
+        const routes = {
+            'home': 'home-page',
+            'services': 'services-page',
+            'about': 'about-page',
+            'careers': 'careers-page',
+            'contact': 'contact-page',
+            'signin': 'signin-page',
+            'signup': 'signup-page'
+        };
+
+        const router = () => {
+            const path = window.location.hash.substring(1) || 'home';
+            const templateId = routes[path] || routes['home'];
+            const template = document.getElementById(templateId);
+            
+            if (template) {
+                appContainer.innerHTML = template.innerHTML;
+                attachEventListeners(path);
+            }
+
+            // Update active nav links for both desktop and mobile
+            const updateLinks = (links) => {
+                 links.forEach(link => {
+                    link.classList.toggle('active', link.dataset.route === path);
+                });
+            }
+            updateLinks(desktopNavLinks);
+            updateLinks(mobileNavLinks);
+            
+            window.scrollTo(0, 0);
+        };
+
+        // --- EVENT LISTENERS ---
+        const attachEventListeners = (path) => {
+            if (path === 'signup') {
+                const signupForm = document.getElementById('signup-form');
+                if(signupForm) signupForm.addEventListener('submit', handleSignUp);
+                const googleSignupBtn = document.getElementById('google-signup-btn');
+                if(googleSignupBtn) googleSignupBtn.addEventListener('click', handleGoogleSignIn);
+            }
+            if (path === 'signin') {
+                const signinForm = document.getElementById('signin-form');
+                if(signinForm) signinForm.addEventListener('submit', handleSignIn);
+                const googleSigninBtn = document.getElementById('google-signin-btn');
+                if(googleSigninBtn) googleSigninBtn.addEventListener('click', handleGoogleSignIn);
+            }
+            if (path === 'contact') {
+                const contactForm = document.getElementById('contact-form');
+                if(contactForm) contactForm.addEventListener('submit', handleContactSubmit);
+            }
+        };
+
+        // --- AUTHENTICATION HANDLERS ---
+        const handleGoogleSignIn = async () => {
+            try {
+                await signInWithPopup(auth, googleProvider);
+                window.location.hash = '#home'; // Redirect on success
+            } catch (error) {
+                console.error("Google sign in error:", error);
+                const errorEl = document.getElementById('signin-error') || document.getElementById('signup-error');
+                if (errorEl) {
+                    errorEl.textContent = error.message;
+                }
+            }
+        };
+
+        const handleSignUp = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.email.value;
+            const password = form.password.value;
+            const errorEl = document.getElementById('signup-error');
+            errorEl.textContent = '';
+
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                window.location.hash = '#home'; // Redirect on success
+            } catch (error) {
+                console.error("Sign up error:", error);
+                errorEl.textContent = error.message;
+            }
+        };
+
+        const handleSignIn = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.email.value;
+            const password = form.password.value;
+            const errorEl = document.getElementById('signin-error');
+            errorEl.textContent = '';
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.hash = '#home'; // Redirect on success
+            } catch (error) {
+                console.error("Sign in error:", error);
+                errorEl.textContent = error.message;
+            }
+        };
+        
+        const handleSignOut = () => {
+            signOut(auth).catch(error => console.error("Sign out error:", error));
+        };
+
+        // --- CONTACT FORM HANDLER ---
+        const handleContactSubmit = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const feedbackEl = document.getElementById('contact-form-feedback');
+            feedbackEl.textContent = 'Sending...';
+            feedbackEl.classList.remove('text-red-500', 'text-green-500');
+
+            try {
+                await addDoc(collection(db, "contacts"), {
+                    firstName: form.firstName.value,
+                    lastName: form.lastName.value,
+                    email: form.email.value,
+                    message: form.message.value,
+                    submittedAt: serverTimestamp()
+                });
+                feedbackEl.textContent = 'Message sent successfully! We will get back to you soon.';
+                feedbackEl.classList.add('text-green-500');
+                form.reset();
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                feedbackEl.textContent = 'Failed to send message. Please try again later.';
+                feedbackEl.classList.add('text-red-500');
+            }
+        };
+        
+
+        // --- UI UPDATES ---
+        const authContainerDesktop = document.getElementById('auth-container-desktop');
+        const authContainerMobile = document.getElementById('auth-container-mobile');
+
+        const updateAuthUI = (user) => {
+             if (user) {
+                // User is signed in
+                authContainerDesktop.innerHTML = `
+                    <span class="text-sm text-gray-600 dark:text-gray-300 hidden lg:inline">${user.email}</span>
+                    <button id="signout-btn-desktop" class="px-4 py-2 text-sm font-medium text-violet-600 dark:text-violet-400 border border-violet-600 dark:border-violet-400 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/50 transition-colors">
+                        Sign Out
+                    </button>
+                `;
+                authContainerMobile.innerHTML = `
+                     <button id="theme-toggle-mobile" type="button" class="mobile-nav-link">
+                        <svg id="theme-toggle-dark-icon-mobile" class="hidden w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon-mobile" class="hidden w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707z"></path></svg>
+                     </button>
+                     <div class="px-3 py-2 text-sm text-gray-400 truncate">${user.email}</div>
+                     <button id="signout-btn-mobile" class="w-full text-left mobile-nav-link">Sign Out</button>
+                `;
+                document.getElementById('signout-btn-desktop').addEventListener('click', handleSignOut);
+                document.getElementById('signout-btn-mobile').addEventListener('click', () => {
+                    handleSignOut();
+                    closeMobileMenu();
+                });
+                const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+                if(themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+
+            } else {
+                // User is signed out
+                authContainerDesktop.innerHTML = `
+                    <a href="#signin" class="px-4 py-2 text-sm font-medium text-gray-600 border border-violet-400 rounded-lg dark:text-gray-300 hover:text-violet-500 dark:hover:text-violet-400 transition-colors">
+                        Sign In
+                    </a>
+                     <a href="#signup" class="px-5 py-2 text-sm font-medium text-white gradient-bg rounded-lg shadow-md hover:scale-105 transform transition-transform duration-300">
+                        Get Started
+                    </a>
+                `;
+                 authContainerMobile.innerHTML = `
+                     <button id="theme-toggle-mobile" type="button" class="mobile-nav-link px-6 py-3">
+                        <svg id="theme-toggle-dark-icon-mobile" class="hidden w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon-mobile" class="hidden w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707z"></path></svg>
+                        <span></span>
+                     </button>
+                    <a href="#signin" class="mobile-nav-link flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-violet-100 rounded-lg shadow-md hover:opacity-90 transition-opacity duration-300"> Sign In</a>
+                    <a href="#signup" class="mobile-nav-link flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white gradient-bg rounded-lg shadow-md hover:opacity-90 transition-opacity duration-300">Get Started</a>
+                 `;
+                 const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+                 if(themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+            }
+             applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        }
+
+        onAuthStateChanged(auth, user => {
+            updateAuthUI(user);
+        });
+        
+        // --- MOBILE MENU ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileNavLinksContainer = document.getElementById('mobile-nav-links');
+
+        const openMobileMenu = () => {
+            mobileMenu.classList.remove('-translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('-translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        };
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close mobile menu when a link is clicked
+        mobileNavLinksContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                closeMobileMenu();
+            }
+        });
+        authContainerMobile.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+                 closeMobileMenu();
+            }
+        });
+
+
+        // --- INITIALIZE ROUTER ---
+        window.addEventListener('hashchange', router);
+        window.addEventListener('load', router);
+
+    </script>
+</body>
+</html>
