@@ -869,29 +869,28 @@
         };
 
         // --- CONTACT FORM HANDLER ---
-        const handleContactSubmit = async (e) => {
+       const handleContactSubmit = (e) => {
             e.preventDefault();
             const form = e.target;
             const feedbackEl = document.getElementById('contact-form-feedback');
             feedbackEl.textContent = 'Sending...';
             feedbackEl.classList.remove('text-red-500', 'text-green-500');
 
-            try {
-                await addDoc(collection(db, "contacts"), {
-                    firstName: form.firstName.value,
-                    lastName: form.lastName.value,
-                    email: form.email.value,
-                    message: form.message.value,
-                    submittedAt: serverTimestamp()
+            // Your EmailJS credentials
+            const serviceID = 'info@qulas';
+            const templateID = 'template_service'; // Your Template ID
+            const publicKey = 'iEjFPwZChM7lKKJjx';   // Your Public Key
+
+            emailjs.sendForm(serviceID, templateID, form, publicKey)
+                .then(() => {
+                    feedbackEl.textContent = 'Message sent successfully! We will get back to you soon.';
+                    feedbackEl.classList.add('text-green-500');
+                    form.reset();
+                }, (error) => {
+                    console.error('Failed to send email:', error);
+                    feedbackEl.textContent = 'Failed to send message. Please try again later. Check the console for details.';
+                    feedbackEl.classList.add('text-red-500');
                 });
-                feedbackEl.textContent = 'Message sent successfully! We will get back to you soon.';
-                feedbackEl.classList.add('text-green-500');
-                form.reset();
-            } catch (error) {
-                console.error("Error adding document: ", error);
-                feedbackEl.textContent = 'Failed to send message. Please try again later.';
-                feedbackEl.classList.add('text-red-500');
-            }
         };
         
 
@@ -999,6 +998,7 @@
     </script>
 </body>
 </html>
+
 
 
 
